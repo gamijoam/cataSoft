@@ -143,7 +143,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>cat.soft.com.catasoft/cat.soft.com.catasoft.HelloApplication</mainClass>
+                            <mainClass>cat.soft.com.catasoft/cat.soft.com.catasoft.VentanaPrincipal</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
