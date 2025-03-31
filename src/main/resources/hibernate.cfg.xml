@@ -6,9 +6,9 @@
     <session-factory>
         <!-- Configuración de la base de datos -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/catalogodb</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mi_papeleria</property>
         <property name="hibernate.connection.username">SERVER</property>
-        <property name="hibernate.connection.password">GaboMac12@__</property>
+        <property name="hibernate.connection.password">GaboMac</property>
 
         <!-- Dialecto de la base de datos -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
@@ -21,5 +21,10 @@
 
         <!-- Entidad mapeada -->
         <mapping class="ORM.Productos"/>
+        <mapping class="ORM.VariacionesProducto"/>
+        <mapping class="ORM.DetalleVenta"/>
+        <mapping class="ORM.Inventario"/>
+        <mapping class="ORM.TasaCambioDiaria"/>
+        <mapping class="ORM.Ventas"
     </session-factory>
 </hibernate-configuration>
