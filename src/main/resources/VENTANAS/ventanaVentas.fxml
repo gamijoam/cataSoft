@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLADORES.VentanaVentas">
+    <children>
+        <ScrollPane fitToWidth="true" prefHeight="600.0" prefWidth="800.0">
+            <content>
+                <VBox alignment="TOP_CENTER" spacing="20.0" styleClass="container">
+                    <children>
+                        <Label styleClass="title" text="Agregar Nuevo Producto" />
+                        <GridPane hgap="10.0" vgap="10.0">
+                            <columnConstraints>
+                                <javafx.scene.layout.ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                <javafx.scene.layout.ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <javafx.scene.layout.RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Nombre:" />
+                                <TextField fx:id="nombreProductoField" promptText="Ingresar nombre" GridPane.columnIndex="1" />
+                                <Label text="Código Único:" GridPane.rowIndex="2" />
+                                <TextField fx:id="codigoUnicoField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Precio de Venta:" GridPane.rowIndex="3" />
+                                <TextField fx:id="precioVentaField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Precio de Costo:" GridPane.rowIndex="4" />
+                                <TextField fx:id="precioCostoField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Descripción:" GridPane.rowIndex="5" />
+                                <TextArea fx:id="descripcionProductoArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label text="Categoría:" GridPane.rowIndex="6" />
+                                <TextField fx:id="categoriaProductoField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <Label text="Marca:" GridPane.rowIndex="7" />
+                                <TextField fx:id="marcaProductoField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <Label text="Proveedor:" GridPane.rowIndex="8" />
+                                <TextField fx:id="proveedorProductoField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                            </children>
+                        </GridPane>
+                        <VBox spacing="10.0">
+                            <children>
+                                <Label styleClass="subtitle" text="Variaciones de Color" />
+                                <VBox fx:id="coloresContainer" spacing="5.0">
+                                    <children>
+                                        <HBox spacing="10.0">
+                                            <children>
+                                                <Label text="Color:" />
+                                                <ComboBox fx:id="colorProductoCombo" prefWidth="150.0" promptText="Seleccionar Color" />
+                                                <Label text="Código Único de Variación:" />
+                                                <TextField fx:id="codigoUnicoVariacionField" prefWidth="150.0" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <Button mnemonicParsing="false" onAction="#agregarNuevoColor" styleClass="secondary-button" text="Agregar Otro Color" />
+                            </children>
+                        </VBox>
+                        <HBox alignment="CENTER_RIGHT" prefWidth="744.0" spacing="15.0">
+                            <children>
+                                <Label text="Cantidad Inicial en Stock:" />
+                                <Spinner fx:id="cantidadStockSpinner" editable="true" prefWidth="100.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#guardarProducto" styleClass="primary-button" text="Guardar Producto" />
+                                <Button mnemonicParsing="false" onAction="#cancelar" styleClass="secondary-button" text="Cancelar" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
