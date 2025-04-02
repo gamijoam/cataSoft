@@ -25,6 +25,6 @@
         <mapping class="ORM.DetalleVenta"/>
         <mapping class="ORM.Inventario"/>
         <mapping class="ORM.TasaCambioDiaria"/>
-        <mapping class="ORM.Ventas"
+        <mapping class="ORM.Ventas"/>
     </session-factory>
 </hibernate-configuration>

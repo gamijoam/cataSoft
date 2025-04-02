@@ -1,10 +1,13 @@
 package CONTROLADORES;
 
+import ORM.Productos;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import java.time.LocalDateTime;
 
 public class VentanaVentas {
     @FXML
@@ -30,9 +33,6 @@ public class VentanaVentas {
     @FXML
     private Spinner cantidadStockSpinner; //
 
-
-
-
     @FXML
     void agregarNuevoColor(){
         System.out.println("Hola");
@@ -40,6 +40,7 @@ public class VentanaVentas {
 
     @FXML
     void guardarProducto(){
+        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Productos.class).buildSessionFactory();
         String nombre = nombreProductoField.getText();
         double precioVenta = Double.parseDouble(precioVentaField.getText());
         double precioCosto = Double.parseDouble(precioCostoField.getText());
@@ -47,14 +48,37 @@ public class VentanaVentas {
         String categoria = categoriaProductoField.getText();
         String marca = marcaProductoField.getText();
         String proveedor = proveedorProductoField.getText();
-        //int stock = (int) cantidadStockSpinner.getValue();
+        int stock = (Integer) cantidadStockSpinner.getValue();
 
-        System.out.println(nombre + " " +  " " +  " " + precioVenta + " "  + " " + precioCosto + " "+ descripcion
-                + " " + categoria + " " + marca + " " + proveedor + " " );
+//        System.out.println(nombre + " " +  " " +  " " + precioVenta + " "  + " " + precioCosto + " "+ descripcion
+//                + " " + categoria + " " + marca + " " + proveedor + " " +  stock);
+
+        //Abrir la sesion
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            LocalDateTime hora = LocalDateTime.now();
+            Productos producto = new Productos(nombre,descripcion,"juju-002",precioVenta,precioCosto,categoria,marca,proveedor);
+            session.save(producto);
+            session.getTransaction().commit();
+        }catch (Exception e ){
+            System.out.println(e);
+            session.getTransaction().rollback();
+        }finally {
+            session.close();
+            sessionFactory.close();
+        }
+
+
 
     }
     @FXML
     void cancelar(){
         System.out.println("Hola");
+    }
+
+    @FXML
+    void initialize(){
+        cantidadStockSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,5000,1));
     }
 }
