@@ -5,59 +5,63 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
+import javax.persistence.*;
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "Inventario")
 public class Inventario {
-    @Id
-    private int id_inventario;
-    private int id_variacion;
-    private  int cantidad_stock;
-    private Timestamp ultima_actualizacion;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_inventario")
+    private Integer idInventario;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_variacion", nullable = false, unique = true)
+    private VariacionesProducto variacionProducto;
+
+    @Column(name = "cantidad_stock", nullable = false, columnDefinition = "INT DEFAULT 0")
+    private Integer cantidadStock;
+
+    @Column(name = "ultima_actualizacion", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private Timestamp ultimaActualizacion;
+
+    // Constructor vacío
     public Inventario() {
     }
 
-    public Inventario(int id_variacion, int cantidad_stock, Timestamp ultima_actualizacion) {
-        this.id_variacion = id_variacion;
-        this.cantidad_stock = cantidad_stock;
-        this.ultima_actualizacion = ultima_actualizacion;
+    // Getters y setters
+
+    public Integer getIdInventario() {
+        return idInventario;
     }
 
-    public int getId_inventario() {
-        return id_inventario;
+    public void setIdInventario(Integer idInventario) {
+        this.idInventario = idInventario;
     }
 
-    public int getId_variacion() {
-        return id_variacion;
+    public VariacionesProducto getVariacionProducto() {
+        return variacionProducto;
     }
 
-    public void setId_variacion(int id_variacion) {
-        this.id_variacion = id_variacion;
+    public void setVariacionProducto(VariacionesProducto variacionProducto) {
+        this.variacionProducto = variacionProducto;
     }
 
-    public int getCantidad_stock() {
-        return cantidad_stock;
+    public Integer getCantidadStock() {
+        return cantidadStock;
     }
 
-    public void setCantidad_stock(int cantidad_stock) {
-        this.cantidad_stock = cantidad_stock;
+    public void setCantidadStock(Integer cantidadStock) {
+        this.cantidadStock = cantidadStock;
     }
 
-    public Timestamp getUltima_actualizacion() {
-        return ultima_actualizacion;
+    public Timestamp getUltimaActualizacion() {
+        return ultimaActualizacion;
     }
 
-    public void setUltima_actualizacion(Timestamp ultima_actualizacion) {
-        this.ultima_actualizacion = ultima_actualizacion;
-    }
-
-    @Override
-    public String toString() {
-        return "Inventario{" +
-                "id_inventario=" + id_inventario +
-                ", id_variacion=" + id_variacion +
-                ", cantidad_stock=" + cantidad_stock +
-                ", ultima_actualizacion=" + ultima_actualizacion +
-                '}';
+    public void setUltimaActualizacion(Timestamp ultimaActualizacion) {
+        this.ultimaActualizacion = ultimaActualizacion;
     }
 }

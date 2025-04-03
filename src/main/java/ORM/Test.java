@@ -13,7 +13,7 @@ public class Test {
     public static void main(String[] args) {
         Test test = new Test();
         Timestamp timestamp = Timestamp.from(Instant.now());
-        test.ingresarInventario(800);
+//        test.ingresarInventario(800);
 
     }
     public void consultar(){
@@ -144,25 +144,25 @@ public class Test {
         }
     }
 
-    public void ingresarInventario(int numero){
-        SessionFactory factory = new Configuration()
-                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Inventario.class)
-                .buildSessionFactory();
-
-        Session session = factory.openSession();
-
-        try {
-            session.beginTransaction();
-            Inventario inventario = session.get(Inventario.class,1);
-            inventario.setCantidad_stock(numero);
-            session.getTransaction().commit();
-        }catch (Exception e){
-            System.out.println(e);
-            session.getTransaction().rollback();
-        }finally {
-            session.close();
-            factory.close();
-        }
-    }
+//    public void ingresarInventario(int numero){
+//        SessionFactory factory = new Configuration()
+//                .configure("hibernate.cfg.xml")
+//                .addAnnotatedClass(Inventario.class)
+//                .buildSessionFactory();
+//
+//        Session session = factory.openSession();
+//
+//        try {
+//            session.beginTransaction();
+//            Inventario inventario = session.get(Inventario.class,1);
+//            inventario.setCantidad_stock(numero);
+//            session.getTransaction().commit();
+//        }catch (Exception e){
+//            System.out.println(e);
+//            session.getTransaction().rollback();
+//        }finally {
+//            session.close();
+//            factory.close();
+//        }
+//    }
 }

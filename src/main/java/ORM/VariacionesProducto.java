@@ -1,37 +1,48 @@
 package ORM;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "VariacionesProducto")
 public class VariacionesProducto {
-    @Id
-    private int id_variacion;
-    private int id_producto;
-    private String color;
-    private String codigo_unico_variacion;
 
+    @Id
+    @Column(name = "id_variacion")
+    private Integer idVariacion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Productos producto;
+
+    @Column(name = "color", nullable = false, length = 50)
+    private String color;
+
+    @Column(name = "codigo_unico_variacion", unique = true, nullable = false, length = 50)
+    private String codigoUnicoVariacion;
+
+    @OneToOne(mappedBy = "variacionProducto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Inventario inventario;
+
+    // Constructor vacío
     public VariacionesProducto() {
     }
 
-    public VariacionesProducto(int id_producto, String color, String codigo_unico_variacion) {
-        this.id_producto = id_producto;
-        this.color = color;
-        this.codigo_unico_variacion = codigo_unico_variacion;
+    // Getters y setters
+
+    public Integer getIdVariacion() {
+        return idVariacion;
     }
 
-    public int getId_variacion() {
-        return id_variacion;
+    public void setIdVariacion(Integer idVariacion) {
+        this.idVariacion = idVariacion;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public Productos getProducto() {
+        return producto;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setProducto(Productos producto) {
+        this.producto = producto;
     }
 
     public String getColor() {
@@ -42,21 +53,19 @@ public class VariacionesProducto {
         this.color = color;
     }
 
-    public String getCodigo_unico_variacion() {
-        return codigo_unico_variacion;
+    public String getCodigoUnicoVariacion() {
+        return codigoUnicoVariacion;
     }
 
-    public void setCodigo_unico_variacion(String codigo_unico_variacion) {
-        this.codigo_unico_variacion = codigo_unico_variacion;
+    public void setCodigoUnicoVariacion(String codigoUnicoVariacion) {
+        this.codigoUnicoVariacion = codigoUnicoVariacion;
     }
 
-    @Override
-    public String toString() {
-        return "VariacionesProducto{" +
-                "id_variacion=" + id_variacion +
-                ", id_producto=" + id_producto +
-                ", color='" + color + '\'' +
-                ", codigo_unico='" + codigo_unico_variacion + '\'' +
-                '}';
+    public Inventario getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(Inventario inventario) {
+        this.inventario = inventario;
     }
 }

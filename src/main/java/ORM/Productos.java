@@ -1,9 +1,9 @@
 package ORM;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Productos")
@@ -18,6 +18,8 @@ public class Productos {
     private String categoria;
     private String marca;
     private String proveedor;
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<VariacionesProducto> variaciones = new HashSet<>();
 
     public Productos() {
     }
@@ -101,18 +103,4 @@ public class Productos {
         this.proveedor = proveedor;
     }
 
-    @Override
-    public String toString() {
-        return "Productos{" +
-                "id_producto=" + id_producto +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", codigo_unico='" + codigo_unico + '\'' +
-                ", precio_venta=" + precio_venta +
-                ", precio_costo=" + precio_costo +
-                ", categoria='" + categoria + '\'' +
-                ", marca='" + marca + '\'' +
-                ", proveedor='" + proveedor + '\'' +
-                '}';
-    }
 }
