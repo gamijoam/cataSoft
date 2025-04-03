@@ -44,6 +44,7 @@
                                 <TextField fx:id="marcaProductoField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <Label text="Proveedor:" GridPane.rowIndex="8" />
                                 <TextField fx:id="proveedorProductoField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label text="Label" />
                             </children>
                         </GridPane>
                         <VBox spacing="10.0">

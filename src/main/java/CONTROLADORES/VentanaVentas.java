@@ -1,13 +1,17 @@
 package CONTROLADORES;
 
 import ORM.Productos;
+import UTILIDADES.CreadorCodigoUnico;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
 
 public class VentanaVentas {
     @FXML
@@ -34,8 +38,14 @@ public class VentanaVentas {
     private Spinner cantidadStockSpinner; //
 
     @FXML
-    void agregarNuevoColor(){
-        System.out.println("Hola");
+    void agregarNuevoColor() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(cat.soft.com.catasoft.VentanaPrincipal.class.getResource("/VENTANAS/ventanaAggColores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600 , 400);
+        scene.getStylesheets().add(getClass().getResource("/css/ventanaAggColores.css").toExternalForm());
+        Stage stage = new Stage();
+        stage.setTitle("Aplicacion");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -48,28 +58,29 @@ public class VentanaVentas {
         String categoria = categoriaProductoField.getText();
         String marca = marcaProductoField.getText();
         String proveedor = proveedorProductoField.getText();
-        int stock = (Integer) cantidadStockSpinner.getValue();
-
-//        System.out.println(nombre + " " +  " " +  " " + precioVenta + " "  + " " + precioCosto + " "+ descripcion
-//                + " " + categoria + " " + marca + " " + proveedor + " " +  stock);
-
-        //Abrir la sesion
+//        int stock = (Integer) cantidadStockSpinner.getValue();
+        CreadorCodigoUnico creadorCodigoUnico = new CreadorCodigoUnico();
+        String codigo_unicoo = creadorCodigoUnico.crearCodigo(nombre);
         Session session = sessionFactory.openSession();
         try{
             session.beginTransaction();
-            LocalDateTime hora = LocalDateTime.now();
-            Productos producto = new Productos(nombre,descripcion,"juju-002",precioVenta,precioCosto,categoria,marca,proveedor);
+            Productos producto = new Productos(nombre,descripcion,codigo_unicoo,precioVenta,precioCosto,categoria,marca,proveedor);
             session.save(producto);
             session.getTransaction().commit();
         }catch (Exception e ){
             System.out.println(e);
             session.getTransaction().rollback();
         }finally {
+            nombreProductoField.setText("");
+            precioVentaField.setText("");
+            precioCostoField.setText("");
+            descripcionProductoArea.setText("");
+            categoriaProductoField.setText("");
+            proveedorProductoField.setText("");
+            marcaProductoField.setText("");
             session.close();
             sessionFactory.close();
         }
-
-
 
     }
     @FXML

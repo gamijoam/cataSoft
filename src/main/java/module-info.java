@@ -13,7 +13,8 @@ module cat.soft.com.catasoft {
     requires java.persistence;
     requires org.hibernate.orm.core;
     requires java.naming;
-    requires java.sql;           // Necesario para JDBC
+    requires java.sql;
+    requires java.desktop;           // Necesario para JDBC
 
     opens ORM to org.hibernate.orm.core;
     opens cat.soft.com.catasoft to javafx.fxml;

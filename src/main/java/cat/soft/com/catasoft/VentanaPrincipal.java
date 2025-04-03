@@ -16,10 +16,20 @@ public class VentanaPrincipal extends Application {
 //        stage.setTitle("Aplicacion");
 //        stage.setScene(scene);
 //        stage.show();
-        FXMLLoader fxmlLoader = new FXMLLoader(cat.soft.com.catasoft.VentanaPrincipal.class.getResource("/VENTANAS/ventanaVentas.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800 , 600);
-        scene.getStylesheets().add(getClass().getResource("/css/ventanaVentas.css").toExternalForm());
+///        FXMLLoader fxmlLoader = new FXMLLoader(cat.soft.com.catasoft.VentanaPrincipal.class.getResource("/VENTANAS/ventanaVentas.fxml"));
+///        Scene scene = new Scene(fxmlLoader.load(), 800 , 600);
+///        scene.getStylesheets().add(getClass().getResource("/css/ventanaVentas.css").toExternalForm());
 //        Stage stage = new Stage();
+///       stage.setTitle("Aplicacion");
+///        stage.setScene(scene);
+///        stage.show();
+
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(cat.soft.com.catasoft.VentanaPrincipal.class.getResource("/VENTANAS/ventanaAggColores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600 , 400);
+        scene.getStylesheets().add(getClass().getResource("/css/ventanaAggColores.css").toExternalForm());
+ //       Stage stage = new Stage();
         stage.setTitle("Aplicacion");
         stage.setScene(scene);
         stage.show();
