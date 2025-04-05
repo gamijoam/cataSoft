@@ -1,15 +1,14 @@
 package ORM;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "Productos")
-public class Productos {
+@Table(name="Productos")
+public class Productoss {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_producto;
+    @Column(name = "id_producto")
+    private int producto;
     private String nombre;
     private String descripcion;
     private String codigo_unico;
@@ -18,13 +17,12 @@ public class Productos {
     private String categoria;
     private String marca;
     private String proveedor;
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<VariacionesProducto> variaciones = new HashSet<>();
 
-    public Productos() {
+
+    public Productoss() {
     }
 
-    public Productos(String nombre, String descripcion, String codigo_unico, double precio_venta, double precio_costo, String categoria, String marca, String proveedor) {
+    public Productoss(String nombre, String descripcion, String codigo_unico, double precio_venta, double precio_costo, String categoria, String marca, String proveedor) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.codigo_unico = codigo_unico;
@@ -35,8 +33,8 @@ public class Productos {
         this.proveedor = proveedor;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getProducto() {
+        return producto;
     }
 
     public String getNombre() {
@@ -101,21 +99,5 @@ public class Productos {
 
     public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
-    }
-
-    @Override
-    public String toString() {
-        return "Productos{" +
-                "id_producto=" + id_producto +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", codigo_unico='" + codigo_unico + '\'' +
-                ", precio_venta=" + precio_venta +
-                ", precio_costo=" + precio_costo +
-                ", categoria='" + categoria + '\'' +
-                ", marca='" + marca + '\'' +
-                ", proveedor='" + proveedor + '\'' +
-                ", variaciones=" + variaciones +
-                '}';
     }
 }

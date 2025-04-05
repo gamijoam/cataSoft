@@ -1,6 +1,9 @@
 package CONTROLADORES;
 
+import ORM.Inventario;
 import ORM.Productos;
+import ORM.Productoss;
+import ORM.VariacionesProducto;
 import UTILIDADES.CreadorCodigoUnico;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +53,7 @@ public class VentanaVentas {
 
     @FXML
     void guardarProducto(){
-        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Productos.class).buildSessionFactory();
+        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Productoss.class).buildSessionFactory();
         String nombre = nombreProductoField.getText();
         double precioVenta = Double.parseDouble(precioVentaField.getText());
         double precioCosto = Double.parseDouble(precioCostoField.getText());
@@ -64,7 +67,7 @@ public class VentanaVentas {
         Session session = sessionFactory.openSession();
         try{
             session.beginTransaction();
-            Productos producto = new Productos(nombre,descripcion,codigo_unicoo,precioVenta,precioCosto,categoria,marca,proveedor);
+            Productoss producto = new Productoss(nombre,descripcion,codigo_unicoo,precioVenta,precioCosto,categoria,marca,proveedor);
             session.save(producto);
             session.getTransaction().commit();
         }catch (Exception e ){

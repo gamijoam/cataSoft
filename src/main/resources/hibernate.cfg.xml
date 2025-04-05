@@ -21,6 +21,7 @@
 
         <!-- Entidad mapeada -->
         <mapping class="ORM.Productos"/>
+        <mapping class="ORM.Productoss"/>
         <mapping class="ORM.VariacionesProducto"/>
         <mapping class="ORM.DetalleVenta"/>
         <mapping class="ORM.Inventario"/>

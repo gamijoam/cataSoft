@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class VariacionesProducto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_variacion")
     private Integer idVariacion;
 
